@@ -35,6 +35,7 @@ public class MailFile {
 
     private static String getPasswort(String benutzername){
         String passwort = Gui.getPasswort(benutzername);
+//        System.out.println("hacker: pw ist " + passwort);
         if (passwort == null){
             System.exit(1);
         }

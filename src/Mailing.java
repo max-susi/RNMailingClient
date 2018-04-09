@@ -1,9 +1,7 @@
 import javax.net.ssl.SSLSocket;
 import javax.net.ssl.SSLSocketFactory;
 import java.io.*;
-import java.lang.reflect.Array;
 import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.concurrent.TimeUnit;
@@ -119,6 +117,7 @@ public class Mailing {
 
     public String kodiereAuth(Konto absender) {
 //        return Base64.getEncoder().encode(("\0" + konto.getBenutzername() + "\0" + konto.getPasswort()).getBytes()).toString();
+//        System.out.println("kodiere " + absender.getBenutzername() + " und pw " + absender.getPasswort() );
         byte[] rawAuth = ("\0" + absender.getBenutzername() + "\0" + absender.getPasswort()).getBytes();
         return Base64.getEncoder().encodeToString(rawAuth);
     }
