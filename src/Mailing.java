@@ -33,13 +33,16 @@ public class Mailing {
 
             // AUTH
 
-            sendeAnServer("AUTH PLAIN " + kodiereAuth(absender));
+            sendeAnServer("AUTH PLAIN");
+            System.out.println("Server:" + leseAntwort());
+            sendeAnServer(kodiereAuth(absender));
             String returnval= returnFromServer.readLine();
             if (returnval.contains("authentication failure")){
                 System.out.println("Fehler bei Authentifizierung");
                 close();
                 return false;
             }
+            System.out.println("Server:" + returnval);
 
 
             // MAIL FROM
@@ -72,13 +75,8 @@ public class Mailing {
             sendeAnServer("QUIT");
             System.out.println("Server:" + leseAntwort());
 
+            close();
         } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                close();
-            } catch (IOException e) {
-            }
         }
 
         return true;
