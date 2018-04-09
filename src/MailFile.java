@@ -16,15 +16,17 @@ public class MailFile {
             konto.saveKonto();
         }
         konto.setPasswort(getPasswort(konto.getBenutzername()));
-        Mailing.sendeMail(empfaenger, anhang, konto);
+        new Mailing().sendeMail(empfaenger, anhang, konto);
     }
 
     private static boolean aufrufPruefen(String[] args){
         if (args.length == 2){
-            if (args[0].toLowerCase().matches("^\\w+[@]\\w+[.][a-z]+$")){
-                File checkanhang = new File(args[1]);
-                return checkanhang.exists() && checkanhang.isFile();
-            }
+            File checkanhang = new File(args[1]);
+            return checkanhang.exists() && checkanhang.isFile();
+        } else{
+            System.err.println("Falscher Aufruf: Keine 2 Parameter ");
+            System.out.println("Empfaenger: " + args[0]);
+            System.out.println("Anhang: " + args[1]);
         }
         System.out.println("Aufrufparameter: empfaengeradresse /pfad/zum/anhang.txt");
 

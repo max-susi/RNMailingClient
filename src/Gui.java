@@ -4,7 +4,7 @@ public class Gui {
 
     public static String getPasswort(String benutzername){
         JPanel panel = new JPanel();
-        JLabel label = new JLabel("Bitte Passwort fuer " + benutzername + "ein:");
+        JLabel label = new JLabel("Bitte Passwort fuer " + benutzername + " ein:");
         JPasswordField pass = new JPasswordField(32);
         panel.add(label);
         panel.add(pass);
@@ -12,7 +12,7 @@ public class Gui {
         int option = JOptionPane.showOptionDialog(null, panel, "The title",
                 JOptionPane.NO_OPTION, JOptionPane.PLAIN_MESSAGE,
                 null, options, options[0]);
-        if(option == 0) // pressing OK button
+        if(option == 0)
         {
             char[] password = pass.getPassword();
             return password.toString();
