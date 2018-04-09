@@ -34,13 +34,13 @@ public class Mailing {
             sendeAnServer("AUTH PLAIN");
             System.out.println("Server:" + leseAntwort());
             sendeAnServer(kodiereAuth(absender));
-            String returnval= returnFromServer.readLine();
-            if (returnval.contains("authentication failure")){
+            String returnval = returnFromServer.readLine();
+            System.out.println("Server:" + returnval);
+            if (returnval.contains("failure")){
                 System.out.println("Fehler bei Authentifizierung");
                 close();
                 return false;
             }
-            System.out.println("Server:" + returnval);
 
 
             // MAIL FROM
@@ -118,8 +118,8 @@ public class Mailing {
     public String kodiereAuth(Konto absender) {
 //        return Base64.getEncoder().encode(("\0" + konto.getBenutzername() + "\0" + konto.getPasswort()).getBytes()).toString();
 //        System.out.println("kodiere " + absender.getBenutzername() + " und pw " + absender.getPasswort() );
-        byte[] rawAuth = ("\0" + absender.getBenutzername() + "\0" + absender.getPasswort()).getBytes();
-        return Base64.getEncoder().encodeToString(rawAuth);
+        String auth = "\0" + absender.getBenutzername() + "\0" + absender.getPasswort();
+        return Base64.getEncoder().encodeToString(auth.getBytes());
     }
 
     private void sendeAnServer(String line) throws IOException {
